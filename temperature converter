@@ -1,0 +1,9 @@
+//kelvin constant
+const kelvin=403;
+//celsius constant
+let celsius=kelvin-273;
+//Fahrenheit calculations
+let fahrenheit = celsius * (9/5) + 32;
+//.floor method
+fahrenheit=Math.floor(fahrenheit);
+console.log("The temperature is "+fahrenheit+" degrees Fahrenheit")
