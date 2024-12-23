@@ -1,0 +1,27 @@
+function calculateGrade(marks) {
+  if (marks >= 90) {
+    return 'A';
+  } else if (marks >= 80) {
+    return 'B';
+  } else if (marks >= 70) {
+    return 'C';
+  } else if (marks >= 60) {
+    return 'D';
+  } else {
+    return 'E';
+  }
+}
+
+
+let marks = prompt("Enter your marks (0-100):");
+
+
+marks = Number(marks);
+
+
+if (!isNaN(marks) && marks >= 0 && marks <= 100) {
+  const grade = calculateGrade(marks);
+  console.log(`Your grade is: ${grade}`);
+} else {
+  console.log("Invalid input. Please enter a number between 0 and 100.");
+}
