@@ -1,0 +1,30 @@
+function calculateSum(numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    return sum;
+}
+
+function calculateAverage(numbers) {
+    if (numbers.length === 0) return 0; // Avoid division by zero
+    const sum = calculateSum(numbers);
+    return sum / numbers.length;
+}
+
+function getUser Input() {
+    const input = prompt("Enter numbers separated by commas (e.g., 1, 2, 3, 4):");
+    if (input) {
+        const numberStrings = input.split(',');
+        const numbers = numberStrings.map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+        const sum = calculateSum(numbers);
+        const average = calculateAverage(numbers);
+
+        console.log(`Sum: ${sum}`);
+        console.log(`Average: ${average}`);
+    } else {
+        console.log("No input provided.");
+    }
+}
+
+getUser Input();
