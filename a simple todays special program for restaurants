@@ -1,0 +1,32 @@
+const menu = {
+  _meal: "",
+  _price: 0,
+  meals: ["Pasta", "Burger", "Salad", "Pizza"],
+  prices: [10, 15, 20, 25],
+  updateMeal(mealToCheck) {
+    if (typeof mealToCheck === "string") {
+      this._meal = mealToCheck;
+    }
+  },
+  updatePrice(priceToCheck) {
+    if (typeof priceToCheck === "number") {
+      this._price = priceToCheck;
+    }
+  },
+  get todaysSpecial() {
+    if (this._meal && this._price) {
+      return "Today's Special is " + this._meal + " for " + this._price + "!";
+    } else {
+      return "Meal or price was not set correctly!";
+    }
+  },
+  setRandomSpecial() {
+    const randomMealIndex = Math.floor(Math.random() * this.meals.length);
+    const randomPriceIndex = Math.floor(Math.random() * this.prices.length);
+    this._meal = this.meals[randomMealIndex];
+    this._price = this.prices[randomPriceIndex];
+  }
+};
+
+menu.setRandomSpecial();
+console.log(menu.todaysSpecial);
