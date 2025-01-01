@@ -1,3 +1,4 @@
+//my online store
 const cart = [];
 function updateCart() {
   const cartItems = document.getElementById('cart-items');
