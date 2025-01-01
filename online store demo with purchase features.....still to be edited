@@ -1,0 +1,63 @@
+const cart = [];
+function updateCart() {
+  const cartItems = document.getElementById('cart-items');
+  const total = document.getElementById('total');
+  cartItems.innerHTML = '';
+  let totalAmount = 0;
+
+  cart.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
+    cartItems.appendChild(itemDiv);
+    totalAmount += item.price * item.quantity;
+  });
+
+  total.textContent = `Total: $${totalAmount}`;
+}
+
+function addToCart(productId, productName, productPrice) {
+  const existingItem = cart.find(item => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({
+      id: productId,
+      name: productName,
+      price: productPrice,
+      quantity: 1
+    });
+  }
+
+  updateCart();
+}
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', event => {
+    const productDiv = event.target.closest('.product');
+    const productId = parseInt(productDiv.getAttribute('data-id'), 10);
+    const productName = productDiv.getAttribute('data-name');
+    const productPrice = parseFloat(productDiv.getAttribute('data-price'));
+
+    addToCart(productId, productName, productPrice);
+  });
+});
+
+document.getElementById('checkout').addEventListener('click', () => {
+  if (cart.length === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+
+  let orderSummary = 'Order Summary:\n';
+  cart.forEach(item => {
+    orderSummary += `${item.name} - $${item.price} x ${item.quantity}\n`;
+  });
+
+  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  orderSummary += `Total: $${totalAmount}\n\nThank you for your purchase!`;
+
+  alert(orderSummary);
+  cart.length = 0; // Clear the cart
+  updateCart();
+});
