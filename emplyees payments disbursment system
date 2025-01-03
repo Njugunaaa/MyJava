@@ -1,0 +1,36 @@
+let employees = [
+    { id: 1, name: "Njugunaa", salary: 5000, isPaid: false },
+    { id: 2, name: "Kimani", salary: 4500, isPaid: false },
+    { id: 3, name: "daisy", salary: 6000, isPaid: false }
+];
+
+function listEmployees() {
+    console.log("Employee List:");
+    employees.forEach(employee => {
+        console.log(`ID: ${employee.id}, Name: ${employee.name}, Salary: $${employee.salary}, Paid: ${employee.isPaid}`);
+    });
+}
+
+function disburseSalary(employeeId) {
+    const employee = employees.find(emp => emp.id === employeeId);
+    if (employee) {
+        if (!employee.isPaid) {
+            employee.isPaid = true;
+            console.log(`Salary of $${employee.salary} has been disbursed to ${employee.name}.`);
+        } else {
+            console.log(`${employee.name} has already been paid.`);
+        }
+    } else {
+        console.log(`Employee with ID ${employeeId} not found.`);
+    }
+}
+function resetPayments() {
+    employees.forEach(employee => employee.isPaid = false);
+    console.log("Payment statuses have been reset for all employees.");
+}
+listEmployees();
+disburseSalary(1);
+disburseSalary(2);
+listEmployees();
+resetPayments();
+listEmployees();
