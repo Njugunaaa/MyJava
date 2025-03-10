@@ -38,6 +38,7 @@ const subscriptionService = {
 };
 
 subscriptionService.registerUser("Alice", "alice@example.com", "Premium");
+
 subscriptionService.registerUser("Bob", "bob@example", "Basic"); // Invalid email
 subscriptionService.registerUser("Charlie", "charlie@example.com", "Basic");
 
